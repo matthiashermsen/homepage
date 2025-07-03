@@ -32,4 +32,5 @@ jobs:
       - name: Release app
         uses: ncipollo/release-action@v1
         with:
+          tag: ${{ github.sha }}
           artifacts: "./${{ github.event.repository.name }}.zip"
