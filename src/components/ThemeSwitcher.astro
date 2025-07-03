@@ -1,0 +1,53 @@
+---
+// biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
+// biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
+import MoonIcon from "@lucide/astro/icons/moon";
+import SunIcon from "@lucide/astro/icons/sun";
+// biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
+// biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
+---
+
+<div role="group" aria-label="Theme switcher">
+    <button class="bg-transparent border-0 m-0 p-0 cursor-pointer hidden dark:block flex justify-center items-center"
+            aria-label="Switch to light theme"
+            onclick="applyLightTheme()">
+        <SunIcon class="text-light dark:text-dark hover:text-highlight transition duration-300 ease-in-out" />
+    </button>
+    <button class="bg-transparent border-0 m-0 p-0 cursor-pointer block dark:hidden flex justify-center items-center"
+            aria-label="Switch to dark theme"
+            onclick="applyDarkTheme()">
+        <MoonIcon class="text-light dark:text-dark hover:text-highlight transition duration-300 ease-in-out" />
+    </button>
+</div>
+
+<script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+        applyTheme();
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        applyTheme();
+    });
+
+    function applyLightTheme() {
+        localStorage.setItem("theme", "light");
+        applyTheme();
+    }
+
+    function applyDarkTheme() {
+        localStorage.setItem("theme", "dark");
+        applyTheme();
+    }
+
+    function applyTheme() {
+        let theme = localStorage.getItem("theme");
+
+        if (!theme) {
+            theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            
+            localStorage.setItem("theme", theme);
+        }
+
+        document.documentElement.classList.toggle("dark", theme === "dark");
+    }
+</script>

@@ -1,0 +1,19 @@
+{
+	"files": {
+		"includes": [
+			"**",
+			"!node_modules",
+			"!build",
+			"!dist",
+			"!.idea",
+			"!.vscode",
+			"!.zed",
+			"!.astro",
+			"!.vercel",
+			"!.turbo",
+			"!.netlify",
+			"!.tanstack",
+			"!**/routeTree.gen.ts"
+		]
+	}
+}

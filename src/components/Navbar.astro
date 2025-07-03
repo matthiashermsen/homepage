@@ -1,0 +1,233 @@
+---
+// biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
+// biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
+import OpenMenuIcon from "@lucide/astro/icons/menu";
+import SendIcon from "@lucide/astro/icons/send";
+import CloseMenuIcon from "@lucide/astro/icons/x";
+
+const { pathname } = Astro.url;
+// biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
+// biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
+---
+
+<header class="py-8 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
+    <div id="nav-mobile" class="lg:hidden flex items-center justify-between gap-4">
+        <a href="/" class="font-bold text-4xl no-underline text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out">Wir entwickeln deine App</a>
+        <button
+            id="open-menu-button"
+            class="bg-transparent border-0 m-0 p-0 cursor-pointer block flex justify-center items-center"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="main-nav"
+            onclick="openMenu()"
+        >
+            <OpenMenuIcon class="text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out" />
+        </button>
+    </div>
+    <nav 
+        id="main-nav" 
+        class="fixed lg:static top-0 lg:top-auto right-[-100%] lg:right-auto h-full lg:h-auto z-999 lg:z-auto bg-light dark:bg-dark border-l-3 lg:border-none border-bg-dark dark:border-bg-light px-8 lg:px-0 transition-[right] duration-300 ease-in-out"
+        aria-label="Main navigation">
+        <ul class="list-none flex items-center pl-0 w-full flex-col lg:flex-row gap-8 lg:justify-between lg:gap-0">
+            <li class="self-start lg:hidden">
+                <button
+                class="bg-transparent border-0 m-0 p-0 cursor-pointer block flex items-center"
+                aria-label="Close menu"
+                onclick="closeMenu()"
+                >
+                    <CloseMenuIcon class="text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out" />
+                </button>
+            </li>
+            <li class="hidden lg:block">
+                <a href="/" class="font-bold text-4xl no-underline text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out">Wir entwickeln deine App</a>
+            </li>
+            <li class="hidden lg:flex lg:items-center lg:gap-4 xl:gap-8 2xl:gap-24">
+                <a 
+                    href="/" 
+                    class={`
+                        no-underline 
+                        font-semibold 
+                        hover:text-highlight 
+                        transition 
+                        duration-300 
+                        ease-in-out 
+                        ${pathname === "" || pathname === "/" ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                        `}
+                    aria-current={pathname === "" || pathname === "/" ? "page" : undefined}
+                >Home</a>
+                <a href="/services/" class={`
+                    no-underline 
+                    font-semibold 
+                    hover:text-highlight 
+                    transition 
+                    duration-300 
+                    ease-in-out 
+                    ${pathname.startsWith("/services") ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                    `}
+                    aria-current={pathname.startsWith("/services") ? "page" : undefined}>Leistungen</a>
+                <a href="/about/" class={`
+                    no-underline 
+                    font-semibold 
+                    hover:text-highlight 
+                    transition 
+                    duration-300 
+                    ease-in-out
+                    ${pathname.startsWith("/about") ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                    `}
+                    aria-current={pathname.startsWith("/about") ? "page" : undefined}>Über uns</a>
+            </li>
+            <li class="self-start lg:self-auto lg:hidden">
+                <a 
+                    href="/" 
+                    class={`
+                        no-underline 
+                        font-semibold 
+                        hover:text-highlight 
+                        transition 
+                        duration-300 
+                        ease-in-out 
+                        ${pathname === "" || pathname === "/" ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                        `}
+                    aria-current={pathname === "" || pathname === "/" ? "page" : undefined}
+                >Home</a>
+            </li>
+            <li class="self-start lg:self-auto lg:hidden">
+                <a href="/services/" class={`
+                    no-underline 
+                    font-semibold 
+                    hover:text-highlight 
+                    transition 
+                    duration-300 
+                    ease-in-out 
+                    ${pathname.startsWith("/services") ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                    `}
+                    aria-current={pathname.startsWith("/services") ? "page" : undefined}>Leistungen</a>
+            </li>
+            <li class="self-start lg:self-auto lg:hidden">
+                <a href="/about/" class={`
+                    no-underline 
+                    font-semibold 
+                    hover:text-highlight 
+                    transition 
+                    duration-300 
+                    ease-in-out
+                    ${pathname.startsWith("/about") ? "text-darker dark:text-lighter" : "text-dark dark:text-light"}
+                    `}
+                    aria-current={pathname.startsWith("/about") ? "page" : undefined}>Über uns</a>
+            </li>
+            <li class="self-start lg:self-auto">
+                <a 
+                    href="/contact/"
+                    class="no-underline bg-dark dark:bg-light text-light dark:text-dark hover:scale-[1.02] transition duration-300 ease-in-out flex items-center justify-center gap-4 rounded-xl px-6 py-4 w-fit"
+                    aria-current={pathname.startsWith("/contact") ? "page" : undefined}
+                    >
+                    <span class="font-semibold">Kontakt</span>
+                    <SendIcon aria-hidden="true" />
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div id="menu-overlay" class="fixed hidden inset-0 z-111 bg-black/50" onclick="closeMenu()" aria-hidden="true" />
+</header>
+
+<script is:inline>
+    function openMenu() {
+        const navbarElement = document.getElementById("main-nav");
+
+        if (navbarElement) {
+            navbarElement.inert = false;
+            navbarElement.classList.remove("right-[-100%]");
+            navbarElement.classList.add("right-0");
+        }
+
+        const openMenuButtonElement = document.getElementById("open-menu-button");
+
+        if (openMenuButtonElement) {
+            openMenuButtonElement.ariaExpanded = "true";
+        }
+
+        const overlayElement = document.getElementById("menu-overlay");
+
+        if (overlayElement) {
+            overlayElement.classList.remove("hidden");
+            overlayElement.classList.add("block");
+        }
+
+        // Focus moves to first menu item when opened for accessibility
+        navbarElement?.querySelector('button, a')?.focus();
+    }
+
+    function closeMenu() {
+        const navbarElement = document.getElementById("main-nav");
+
+        if (navbarElement) {
+            navbarElement.inert = true;
+            navbarElement.classList.add("right-[-100%]");
+            navbarElement.classList.remove("right-0");
+        }
+
+        const openMenuButtonElement = document.getElementById("open-menu-button");
+
+        if (openMenuButtonElement) {
+            openMenuButtonElement.ariaExpanded = "false";
+
+            // Return focus to menu button when closed for accessibility
+            openMenuButtonElement.focus();
+        }
+
+        const overlayElement = document.getElementById("menu-overlay");
+
+        if (overlayElement) {
+            overlayElement.classList.remove("block");
+            overlayElement.classList.add("hidden");
+        }
+    }
+
+    function handleResize() {
+        const navMobileElement = document.getElementById("nav-mobile");
+        const navbarElement = document.getElementById("main-nav");
+        const overlayElement = document.getElementById("menu-overlay");
+        const openMenuButtonElement = document.getElementById("open-menu-button");
+
+        if (!navMobileElement || !navbarElement) {
+            return;
+        }
+
+        const navMobileStyles = getComputedStyle(navMobileElement);
+        const isMobileNavVisible = navMobileStyles.display !== "none";
+        
+        if (isMobileNavVisible) {
+            const isMenuClosed = navbarElement.classList.contains("right-[-100%]");
+            navbarElement.inert = isMenuClosed;
+        } else {
+            navbarElement.inert = false;
+            
+            if (overlayElement && !overlayElement.classList.contains("hidden")) {
+                overlayElement.classList.remove("block");
+                overlayElement.classList.add("hidden");
+            }
+            
+            if (openMenuButtonElement) {
+                openMenuButtonElement.ariaExpanded = "false";
+            }
+            
+            navbarElement.classList.remove("right-0");
+            navbarElement.classList.add("right-[-100%]");
+        }
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === 'Escape') {
+            const navbarElement = document.getElementById("main-nav");
+            const isMenuOpen = navbarElement && !navbarElement.classList.contains("right-[-100%]");
+            
+            if (isMenuOpen) {
+                closeMenu();
+            }
+        }
+    }
+
+    window.addEventListener("resize", handleResize);
+    window.addEventListener("keydown", handleKeyDown);
+    handleResize();
+</script>

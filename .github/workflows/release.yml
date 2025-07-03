@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build the application
+        run: npm run build
+
+      - name: Distribute app as ZIP file
+        run: |
+          mv ./dist ./${{ github.event.repository.name }}
+          zip -r ${{ github.event.repository.name }}.zip ./${{ github.event.repository.name }}
+
+      - name: Release app
+        uses: ncipollo/release-action@v1
+        with:
+          tag: ${{ steps.get_next_version.outputs.version }}
+          artifacts: "./${{ github.event.repository.name }}.zip"

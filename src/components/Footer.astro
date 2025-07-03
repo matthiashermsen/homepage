@@ -1,0 +1,102 @@
+---
+// biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
+// biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
+import SendIcon from "@lucide/astro/icons/send";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
+
+const { pathname } = Astro.url;
+// biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
+// biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
+---
+
+<footer class="bg-dark dark:bg-light text-light dark:text-dark py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
+    <div class="text-center md:text-left font-bold text-3xl mb-8">
+        <a href="/" class="no-underline text-light dark:text-dark hover:text-highlight transition duration-300 ease-in-out">
+            Wir entwickeln deine App
+        </a>
+    </div>
+    <div class="flex flex-col md:flex-row justify-center md:justify-between gap-6 sm:gap-12">
+        <div class="text-center md:text-left">
+            <div class="mb-6 md:max-w-128 font-semibold">Du möchtest über dein Projekt sprechen oder hast Fragen zu unseren Leistungen? Kontaktiere uns gerne.</div>
+            <div class="flex justify-center md:justify-start">
+                <a 
+                    href="/contact/"
+                    aria-label="Kontakt"
+                    class="no-underline bg-light dark:bg-dark text-dark dark:text-light hover:scale-[1.02] transition duration-300 ease-in-out flex items-center justify-center gap-4 rounded-xl px-6 py-4 w-fit"
+                    aria-current={pathname.startsWith("/contact") ? "page" : undefined}
+                >
+                    <span class="font-semibold">Kontakt</span>
+                    <SendIcon />
+                </a>
+            </div>
+        </div>
+        <nav aria-label="Footer navigation">
+            <h2 class="sr-only">Main navigation</h2>
+            <div class="flex flex-col gap-2 text-center md:text-left">
+                {
+                    [{
+                        href: "/",
+                        text: "Home"
+                    }, {
+                        href: "/services/",
+                        text: "Leistungen"
+                    }, {
+                        href: "/about/",
+                        text: "Über uns"
+                    }, {
+                        href: "/contact/",
+                        text: "Kontakt"
+                    }].map(item => 
+                    <a 
+                    href={item.href} 
+                    class={`
+                        no-underline 
+                        font-semibold 
+                        hover:text-highlight 
+                        transition 
+                        duration-300 
+                        ease-in-out
+                        ${pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)) ? "text-lighter dark:text-darker" : "text-light dark:text-dark"}
+                    `}
+                    aria-current={pathname === item.href || (item.href !== "/" && pathname.startsWith(item.href)) ? "page" : undefined}>
+                    {item.text}
+                    </a>
+                    )
+                }
+            </div>
+        </nav>
+        <nav aria-label="Legal navigation">
+            <h2 class="sr-only">Legal navigation</h2>
+            <div class="flex flex-col gap-2 text-center md:text-left">
+                {
+                    [{
+                        href: "/imprint/",
+                        text: "Impressum"
+                    }, {
+                        href: "/privacy/",
+                        text: "Datenschutz"
+                    }].map(item => 
+                        <a
+                            href={item.href} 
+                            class={`
+                                no-underline 
+                                font-semibold 
+                                hover:text-highlight 
+                                transition 
+                                duration-300 
+                                ease-in-out
+                                ${pathname.startsWith(item.href) ? "text-lighter dark:text-darker" : "text-light dark:text-dark"}
+                            `}
+                            aria-current={pathname.startsWith(item.href) ? "page" : undefined}
+                        >
+                        {item.text}
+                        </a>
+                    )
+                }
+            </div>
+        </nav>
+    </div>
+    <div class="flex justify-center md:justify-start mt-8">
+        <ThemeSwitcher />
+    </div>
+</footer>

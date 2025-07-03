@@ -1,0 +1,52 @@
+---
+// biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
+// biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
+import "@fontsource/inter";
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+// biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
+// biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
+---
+
+<html lang="de" class="h-full scroll-smooth transition-colors duration-300 motion-reduce:transition-none motion-reduce:duration-0">
+	<head>
+		<script>
+			(function() {
+			  try {
+				const theme = localStorage.getItem("theme") || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+				if (theme === "dark") {
+				  document.documentElement.classList.add("dark");
+				}
+			  } catch (e) {}
+			})();
+		</script>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content="Wir entwickeln individuelle Apps für dein Unternehmen. Kontaktiere uns für maßgeschneiderte Softwarelösungen.">
+		<meta name="keywords" content="App Entwicklung, Softwareentwicklung, Web Apps, Mobile Apps">
+		<title>Wir entwickeln deine App</title>
+	</head>
+	<body class="h-full m-0 flex flex-col bg-light dark:bg-dark text-dark dark:text-light">
+		<Navbar />
+		<main class="flex-grow px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+    @import "tailwindcss";
+
+	@custom-variant dark (&:where(.dark, .dark *));
+
+	@theme {
+		--font-sans: 'Inter', 'sans-serif';
+		--color-light: #f2f0e3;
+		--color-dark: #1f1f1f;
+		--color-highlight: #f76f53;
+		--color-lighter: #e6e4d7;
+		--color-darker: #363636;
+	}
+</style>
