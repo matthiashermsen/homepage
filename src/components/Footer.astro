@@ -9,8 +9,9 @@ const { pathname } = Astro.url;
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
 ---
 
-<footer class="bg-dark dark:bg-light text-light dark:text-dark py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
-    <div class="text-center md:text-left font-bold text-3xl mb-8">
+<footer class="bg-dark dark:bg-light text-light dark:text-dark py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center md:text-left font-bold text-2xl sm:text-3xl md:text-4xl mb-8">
         <a href="/" class="no-underline text-light dark:text-dark hover:text-highlight transition duration-300 ease-in-out">
             Wir entwickeln deine App
         </a>
@@ -99,4 +100,5 @@ const { pathname } = Astro.url;
     <div class="flex justify-center md:justify-start mt-8">
         <ThemeSwitcher />
     </div>
+</div>
 </footer>

@@ -10,9 +10,10 @@ const { pathname } = Astro.url;
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
 ---
 
-<header class="py-8 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
+<header class="py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div id="nav-mobile" class="lg:hidden flex items-center justify-between gap-4">
-        <a href="/" class="font-bold text-4xl no-underline text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out">Wir entwickeln deine App</a>
+        <a href="/" class="font-bold text-2xl sm:text-3xl md:text-4xl no-underline text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out">Wir entwickeln deine App</a>
         <button
             id="open-menu-button"
             class="bg-transparent border-0 m-0 p-0 cursor-pointer block flex justify-center items-center"
@@ -41,7 +42,7 @@ const { pathname } = Astro.url;
             <li class="hidden lg:block">
                 <a href="/" class="font-bold text-4xl no-underline text-dark dark:text-light hover:text-highlight transition duration-300 ease-in-out">Wir entwickeln deine App</a>
             </li>
-            <li class="hidden lg:flex lg:items-center lg:gap-4 xl:gap-8 2xl:gap-24">
+            <li class="hidden lg:flex lg:items-center lg:gap-4 xl:gap-6 2xl:gap-8">
                 <a 
                     href="/" 
                     class={`
@@ -128,6 +129,7 @@ const { pathname } = Astro.url;
         </ul>
     </nav>
     <div id="menu-overlay" class="fixed hidden inset-0 z-111 bg-black/50" onclick="closeMenu()" aria-hidden="true" />
+    </div>
 </header>
 
 <script is:inline>

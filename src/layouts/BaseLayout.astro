@@ -29,8 +29,10 @@ import Navbar from "../components/Navbar.astro";
 	</head>
 	<body class="h-full m-0 flex flex-col bg-light dark:bg-dark text-dark dark:text-light">
 		<Navbar />
-		<main class="flex-grow px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-64">
-			<slot />
+		<main class="flex-grow">
+			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+				<slot />
+			</div>
 		</main>
 		<Footer />
 	</body>
