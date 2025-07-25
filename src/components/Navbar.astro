@@ -2,8 +2,8 @@
 // biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import OpenMenuIcon from "@lucide/astro/icons/menu";
-import SendIcon from "@lucide/astro/icons/send";
 import CloseMenuIcon from "@lucide/astro/icons/x";
+import ArrowRightIcon from "@lucide/astro/icons/arrow-right";
 
 const { pathname } = Astro.url;
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
@@ -123,7 +123,7 @@ const { pathname } = Astro.url;
                     aria-current={pathname.startsWith("/contact") ? "page" : undefined}
                     >
                     <span class="font-semibold">Kontakt</span>
-                    <SendIcon aria-hidden="true" />
+                    <ArrowRightIcon aria-hidden="true" />
                 </a>
             </li>
         </ul>

@@ -2,27 +2,29 @@
 // biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import BaseLayout from "../layouts/BaseLayout.astro";
+import MailboxIcon from "@lucide/astro/icons/mailbox";
 import SendIcon from "@lucide/astro/icons/send";
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
 ---
 
 <BaseLayout>
-	<div class="text-dark dark:text-light">
-		<div class="font-bold text-xl sm:text-2xl md:text-3xl">Let's talk!</div>
-		<div class="text-lg pb-8 pt-4">
+	<div class="text-center text-dark dark:text-light">
+		<MailboxIcon size={164} stroke-width={1} aria-hidden="true" />
+		<div class="font-bold text-xl sm:text-2xl md:text-3xl mt-6">Melde dich einfach bei uns!</div>
+		<div class="text-lg mt-6 mx-auto max-w-2xl">
 			Lass dich persönlich von uns beraten und erhalte eine Vorstellung über den Umfang und die Kosten deines Projektes.
 		</div>
-		<div class="flex items-center justify-center pt-16 pb-4">
+		<div class="flex items-center justify-center mt-12">
 			<a 
 			href="mailto:matthias.hermsen@pm.me?subject=Unverbindliche%20Anfrage"
 			class="cursor-pointer no-underline bg-dark dark:bg-light text-light dark:text-dark hover:scale-[1.08] transition duration-300 ease-in-out flex items-center justify-center gap-4 rounded-xl px-12 py-8 w-fit"
 			>
 			<span class="font-semibold text-xl">Unverbindlich Kontakt aufnehmen</span>
-			<SendIcon aria-hidden="true" />
+			<SendIcon size={32} aria-hidden="true" />
 				</a>
 		</div>
-		<div class="text-center pb-12">
+		<div class="text-center mt-6 text-black/50 dark:text-white/50">
 			Nimm bitte auch unsere
 			<a href="/privacy/" class="
 			no-underline 
@@ -32,16 +34,6 @@ import SendIcon from "@lucide/astro/icons/send";
 			ease-in-out
 			">Datenschutzerklärung</a>
 			zur Kenntnis.
-		</div>
-		<div class="font-semibold text-lg pt-8">
-			Wie geht es weiter?
-		</div>
-		<div class="pt-4">
-			Wir melden uns in Kürze bei dir und möchten dich und dein Projekt gerne kennenlernen.
-			<br>Lass uns besprechen, ob wir der richtige Ansprechpartner für dich sind und offene Fragen klären.
-		</div>
-		<div class="pt-4">
-			Wenn alles passt, freuen wir uns, dich bei deinem Projekt unterstützen zu dürfen.
 		</div>
 	</div>
 </BaseLayout>
