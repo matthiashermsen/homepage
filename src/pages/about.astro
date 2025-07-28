@@ -2,10 +2,49 @@
 // biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Image } from 'astro:assets';
+import member1Image from './members/member1.jpg';
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
+
+const currentYear = (new Date()).getFullYear();
+const amountOfYearsOfExperience = currentYear - 2015;
+
+const members = [
+  {
+    title: "Matthias Hermsen",
+    img: member1Image,
+    profession: "Webentwicklung",
+  },
+  {
+    title: "???",
+    img: member1Image,
+    profession: "???",
+  },
+  {
+    title: "???",
+    img: member1Image,
+    profession: "???",
+  }
+];
 ---
 
 <BaseLayout>
-	<div>Über uns...</div>
+	<h1 class="text-2xl font-bold">Über uns</h1>
+	<h2 class="text-lg font-semibold max-w-4xl">
+		Seit mittlerweile {amountOfYearsOfExperience} Jahren sind wir in der digitalen Produktentwicklung aktiv.
+		Unser Schwerpunkt liegt auf der Entwicklung performanter und zeitgemäßer Webanwendungen - von klassischen Websites bis hin zu komplexen (Web-)Apps. 
+		Dabei verstehen wir uns alszuverlässiger Entwicklungspartner. Qualität, Wartbarkeit und Performance stehen bei uns an erster Stelle.
+	</h2>
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 place-items-center mt-24">
+		{members.map((member, index) => 
+			<article aria-labelledby={`member-title-${index}`} role="group">
+				<Image title={member.title} src={member.img} alt={`Porträt von ${member.title}`} width={400} />
+				<div class="pl-8">
+					<div id={`member-title-${index}`} class="font-semibold mt-2">{member.title}</div>
+					<div class="mt-1">{member.profession}</div>
+				</div>
+			</article>
+		)}
+	</div>
 </BaseLayout>
