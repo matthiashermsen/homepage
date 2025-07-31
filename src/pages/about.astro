@@ -3,7 +3,11 @@
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from 'astro:assets';
-import member1Image from './members/member1.jpg';
+import RocketIcon from "@lucide/astro/icons/rocket";
+import SquareTerminalIcon from "@lucide/astro/icons/square-terminal";
+import HandshakeIcon from "@lucide/astro/icons/handshake";
+import GlassesIcon from "@lucide/astro/icons/glasses";
+import placeholderImage from './members/member1.jpg';
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
 
@@ -13,38 +17,90 @@ const amountOfYearsOfExperience = currentYear - 2015;
 const members = [
   {
     title: "Matthias Hermsen",
-    img: member1Image,
+    img: placeholderImage,
     profession: "Webentwicklung",
   },
   {
-    title: "???",
-    img: member1Image,
-    profession: "???",
+    title: "Placeholder 2",
+    img: placeholderImage,
+    profession: "Placeholder",
   },
   {
-    title: "???",
-    img: member1Image,
-    profession: "???",
+    title: "Placeholder 3",
+    img: placeholderImage,
+    profession: "Placeholder",
+  },
+  {
+    title: "Placeholder 4",
+    img: placeholderImage,
+    profession: "Placeholder",
   }
 ];
 ---
 
 <BaseLayout>
-	<h1 class="text-2xl font-bold">Über uns</h1>
-	<h2 class="text-lg font-semibold max-w-4xl">
-		Seit mittlerweile {amountOfYearsOfExperience} Jahren sind wir in der digitalen Produktentwicklung aktiv.
-		Unser Schwerpunkt liegt auf der Entwicklung performanter und zeitgemäßer Webanwendungen - von klassischen Websites bis hin zu komplexen (Web-)Apps. 
-		Dabei verstehen wir uns alszuverlässiger Entwicklungspartner. Qualität, Wartbarkeit und Performance stehen bei uns an erster Stelle.
-	</h2>
-	<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 place-items-center mt-24">
-		{members.map((member, index) => 
-			<article aria-labelledby={`member-title-${index}`} role="group">
-				<Image title={member.title} src={member.img} alt={`Porträt von ${member.title}`} width={400} />
-				<div class="pl-8">
-					<div id={`member-title-${index}`} class="font-semibold mt-2">{member.title}</div>
-					<div class="mt-1">{member.profession}</div>
-				</div>
+	<section class="text-center mt-12 max-w-3xl mx-auto">
+		<RocketIcon class="mx-auto text-primary" size={48} />
+		<h1 class="text-3xl font-bold mt-4">Über uns</h1>
+		<h2 class="text-xl font-semibold mt-2">Wir entwickeln die (Web-)Apps von morgen</h2>
+		<p class="mt-4 text-darker dark:text-lighter">
+		  Mit über {amountOfYearsOfExperience} Jahren Erfahrung entwickeln wir moderne, performante Anwendungen – individuell, nachhaltig und mit technischem Feinsinn.
+		</p>
+	  </section>
+	  <section class="mt-16 text-center max-w-2xl mx-auto text-darker dark:text-lighter">
+		<p>
+		  Unser Fokus liegt auf moderner Webentwicklung: schnelle Websites, skalierbare Web-Apps und durchdachte digitale Produkte. 
+		  Wir verbinden technologische Qualität mit langfristiger Wartbarkeit – für Unternehmen, Agenturen und Startups.
+		</p>
+	  </section>
+	  <section class="mt-24" aria-labelledby="values-heading">
+		<h2 id="values-heading" class="text-2xl font-bold text-center">Unsere Werte</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center mt-12">
+		  <article class="max-w-sm mx-auto" aria-labelledby="value-tech">
+			<div class="flex justify-center items-center gap-2 mb-4">
+			  <SquareTerminalIcon aria-hidden="true" size={32} class="text-primary" />
+			  <h3 id="value-tech" class="text-lg font-semibold">Nachhaltige Technik</h3>
+			</div>
+			<p class="text-darker dark:text-lighter">
+			  Wir setzen auf moderne, etablierte Technologien – ohne jedem kurzfristigen Trend zu folgen. Qualität und Wartbarkeit stehen bei uns an erster Stelle.
+			</p>
+		  </article>
+		  <article class="max-w-sm mx-auto" aria-labelledby="value-transparency">
+			<div class="flex justify-center items-center gap-2 mb-4">
+			  <GlassesIcon aria-hidden="true" size={32} class="text-primary" />
+			  <h3 id="value-transparency" class="text-lg font-semibold">Transparenz</h3>
+			</div>
+			<p class="text-darker dark:text-lighter">
+			  Wir sprechen Klartext – ohne verwirrende Fachbegriffe. Komplexe Inhalte erklären wir so, dass du jederzeit den Überblick behältst.
+			</p>
+		  </article>
+		  <article class="max-w-sm mx-auto" aria-labelledby="value-partnership">
+			<div class="flex justify-center items-center gap-2 mb-4">
+			  <HandshakeIcon aria-hidden="true" size={32} class="text-primary" />
+			  <h3 id="value-partnership" class="text-lg font-semibold">Partnerschaft</h3>
+			</div>
+			<p class="text-darker dark:text-lighter">
+			  Wir sehen uns nicht als Dienstleister, sondern als Partner. Dein Erfolg ist unser Ziel – offen, verlässlich und auf Augenhöhe.
+			</p>
+		  </article>
+		</div>
+	  </section>
+	  <section class="mt-24" aria-labelledby="team-heading">
+		<h2 id="team-heading" class="text-2xl font-bold text-center">Unser Team</h2>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+		  {members.map((member, index) => (
+			<article class="text-center max-w-xs mx-auto" aria-labelledby={`member-title-${index}`}>
+			  <Image
+				title={member.title}
+				src={member.img}
+				alt={`Profilbild von ${member.title}, ${member.profession}`}
+				width={200}
+				class="rounded-xl mx-auto"
+			  />
+			  <h3 id={`member-title-${index}`} class="font-semibold mt-4">{member.title}</h3>
+			  <p class="text-sm text-darker dark:text-lighter">{member.profession}</p>
 			</article>
-		)}
-	</div>
+		  ))}
+		</div>
+	  </section>
 </BaseLayout>
