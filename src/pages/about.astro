@@ -3,10 +3,10 @@
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { Image } from 'astro:assets';
-import RocketIcon from "@lucide/astro/icons/rocket";
 import SquareTerminalIcon from "@lucide/astro/icons/square-terminal";
 import HandshakeIcon from "@lucide/astro/icons/handshake";
 import GlassesIcon from "@lucide/astro/icons/glasses";
+import mainImage from './about.jpg';
 import placeholderImage from './members/member1.jpg';
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
@@ -40,53 +40,55 @@ const members = [
 
 <BaseLayout>
 	<section class="text-center mt-12 max-w-3xl mx-auto">
-		<RocketIcon class="mx-auto text-primary" size={48} />
 		<h1 class="text-3xl font-bold mt-4">Über uns</h1>
 		<h2 class="text-xl font-semibold mt-2">Wir entwickeln die (Web-)Apps von morgen</h2>
 		<p class="mt-4 text-darker dark:text-lighter">
 		  Mit über {amountOfYearsOfExperience} Jahren Erfahrung entwickeln wir moderne, performante Anwendungen – individuell, nachhaltig und mit technischem Feinsinn.
 		</p>
 	  </section>
-	  <section class="mt-16 text-center max-w-2xl mx-auto text-darker dark:text-lighter">
-		<p>
-		  Unser Fokus liegt auf moderner Webentwicklung: schnelle Websites, skalierbare Web-Apps und durchdachte digitale Produkte. 
-		  Wir verbinden technologische Qualität mit langfristiger Wartbarkeit – für Unternehmen, Agenturen und Startups.
-		</p>
-	  </section>
-	  <section class="mt-24" aria-labelledby="values-heading">
-		<h2 id="values-heading" class="text-2xl font-bold text-center">Unsere Werte</h2>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center mt-12">
-		  <article class="max-w-sm mx-auto" aria-labelledby="value-tech">
-			<div class="flex justify-center items-center gap-2 mb-4">
-			  <SquareTerminalIcon aria-hidden="true" size={32} class="text-primary" />
-			  <h3 id="value-tech" class="text-lg font-semibold">Nachhaltige Technik</h3>
-			</div>
-			<p class="text-darker dark:text-lighter">
-			  Wir setzen auf moderne, etablierte Technologien – ohne jedem kurzfristigen Trend zu folgen. Qualität und Wartbarkeit stehen bei uns an erster Stelle.
-			</p>
-		  </article>
-		  <article class="max-w-sm mx-auto" aria-labelledby="value-transparency">
-			<div class="flex justify-center items-center gap-2 mb-4">
-			  <GlassesIcon aria-hidden="true" size={32} class="text-primary" />
-			  <h3 id="value-transparency" class="text-lg font-semibold">Transparenz</h3>
-			</div>
-			<p class="text-darker dark:text-lighter">
-			  Wir sprechen Klartext – ohne verwirrende Fachbegriffe. Komplexe Inhalte erklären wir so, dass du jederzeit den Überblick behältst.
-			</p>
-		  </article>
-		  <article class="max-w-sm mx-auto" aria-labelledby="value-partnership">
-			<div class="flex justify-center items-center gap-2 mb-4">
-			  <HandshakeIcon aria-hidden="true" size={32} class="text-primary" />
-			  <h3 id="value-partnership" class="text-lg font-semibold">Partnerschaft</h3>
-			</div>
-			<p class="text-darker dark:text-lighter">
-			  Wir sehen uns nicht als Dienstleister, sondern als Partner. Dein Erfolg ist unser Ziel – offen, verlässlich und auf Augenhöhe.
-			</p>
-		  </article>
+	  <section class="mt-16 text-darker dark:text-lighter flex flex-col lg:flex-row justify-between gap-8 items-center">
+		<div class="flex flex-col gap-8">
+			<article class="max-w-xl mx-auto" aria-labelledby="value-tech">
+				<div class="flex justify-center lg:justify-start items-center gap-2 mb-2">
+				  <SquareTerminalIcon aria-hidden="true" size={32} class="text-highlight" />
+				  <h3 id="value-tech" class="text-lg font-semibold my-1">Nachhaltige Technik</h3>
+				</div>
+				<p class="text-center lg:text-left text-darker dark:text-lighter my-1">
+				  Wir setzen auf moderne, etablierte Technologien – ohne jedem kurzfristigen Trend zu folgen. Qualität und Wartbarkeit stehen bei uns an erster Stelle.
+				</p>
+			  </article>
+			  <article class="max-w-xl mx-auto" aria-labelledby="value-transparency">
+				<div class="flex justify-center lg:justify-start items-center gap-2 mb-2">
+				  <GlassesIcon aria-hidden="true" size={32} class="text-highlight" />
+				  <h3 id="value-tech" class="text-lg font-semibold my-1">Transparenz</h3>
+				</div>
+				<p class="text-center lg:text-left text-darker dark:text-lighter my-1">
+					Wir sprechen Klartext – ohne verwirrende Fachbegriffe. Komplexe Inhalte erklären wir so, dass du jederzeit den Überblick behältst.
+				</p>
+			  </article>
+			  <article class="max-w-xl mx-auto" aria-labelledby="value-partnership">
+				<div class="flex justify-center lg:justify-start items-center gap-2 mb-2">
+				  <HandshakeIcon aria-hidden="true" size={32} class="text-highlight" />
+				  <h3 id="value-tech" class="text-lg font-semibold my-1">Partnerschaft</h3>
+				</div>
+				<p class="text-center lg:text-left text-darker dark:text-lighter my-1">
+					Wir sehen uns nicht als Dienstleister, sondern als Partner. Dein Erfolg ist unser Ziel – offen, verlässlich und auf Augenhöhe.
+				</p>
+			  </article>
 		</div>
+		<Image
+		title="Gemeinsam zum Erfolg"
+		src={mainImage}
+		alt="Gemeinsam zum Erfolg"
+		width={400}
+		class="rounded-xl mt-8 mx-auto"
+	  />
 	  </section>
 	  <section class="mt-24" aria-labelledby="team-heading">
 		<h2 id="team-heading" class="text-2xl font-bold text-center">Unser Team</h2>
+		<p class="mt-4 text-center text-darker dark:text-lighter">
+			Hier siehst du, wer dahintersteht.
+		</p>
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
 		  {members.map((member, index) => (
 			<article class="text-center max-w-xs mx-auto" aria-labelledby={`member-title-${index}`}>

@@ -2,42 +2,83 @@
 // biome-ignore-start lint/correctness/noUnusedImports: fix with support for .astro files
 // biome-ignore-start lint/correctness/noUnusedVariables: fix with support for .astro files
 import BaseLayout from "../layouts/BaseLayout.astro";
-import MailboxIcon from "@lucide/astro/icons/mailbox";
+import { Image } from 'astro:assets';
 import SendIcon from "@lucide/astro/icons/send";
+import Lightbulb from "@lucide/astro/icons/lightbulb";
+import ClipboardList from "@lucide/astro/icons/clipboard-list";
+import BadgeCheck from "@lucide/astro/icons/badge-check";
+import Mail from "@lucide/astro/icons/mail";
+import mainImage from './contact.jpeg';
 // biome-ignore-end lint/correctness/noUnusedVariables: fix with support for .astro files
 // biome-ignore-end lint/correctness/noUnusedImports: fix with support for .astro files
 ---
 
 <BaseLayout>
-	<div class="text-center text-dark dark:text-light">
-		<MailboxIcon size={164} stroke-width={1} aria-hidden="true" />
-		<h1 class="font-bold text-xl sm:text-2xl md:text-3xl mt-6">Melde dich einfach bei uns!</h1>
-		<p class="text-lg mt-6 mx-auto max-w-2xl">
-			Lass dich persönlich von uns beraten und erhalte eine Vorstellung über den Umfang und die Kosten deines Projektes.
-		</p>
-		<p class="text-lg mt-6 mx-auto max-w-2xl">
-			Wir sind nur einen Klick entfernt.
-		</p>
-		<div class="flex items-center justify-center mt-12">
-			<a 
-			href="mailto:matthias.hermsen@pm.me?subject=Unverbindliche%20Anfrage"
-			role="button"
-			class="cursor-pointer no-underline bg-dark dark:bg-light text-light dark:text-dark hover:scale-[1.08] transition duration-300 ease-in-out flex items-center justify-center gap-4 rounded-xl px-12 py-8 w-fit"
-			>
-			<span class="font-semibold text-xl">Unverbindlich Kontakt aufnehmen</span>
-			<SendIcon size={32} aria-hidden="true" />
-				</a>
-		</div>
-		<div class="text-center mt-6 text-black/50 dark:text-white/50">
-			Nimm bitte auch unsere
-			<a href="/privacy/" class="
-			no-underline 
-			text-highlight
-			transition 
-			duration-300
-			ease-in-out
-			">Datenschutzerklärung</a>
-			zur Kenntnis.
-		</div>
-	</div>
+  <div class="text-dark dark:text-light">
+    <h1 class="text-center font-bold text-xl sm:text-2xl md:text-3xl mt-6">
+      Melde dich einfach bei uns!
+    </h1>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-16">
+      <div class="space-y-8">
+        <h2 class="text-lg sm:text-xl font-bold">
+          Lass dich persönlich von uns beraten und erhalte eine klare Vorstellung über den Umfang und die Kosten deines Projekts.
+        </h2>
+        <ul class="space-y-8">
+          <li class="flex items-start gap-4">
+            <Lightbulb class="text-highlight mt-1" size={28} aria-hidden="true" />
+            <span>
+              <strong>Idee oder bereits konkret?</strong> – Wir holen dich genau da ab, wo du gerade stehst.
+            </span>
+          </li>
+          <li class="flex items-start gap-4">
+            <ClipboardList class="text-highlight mt-1" size={28} aria-hidden="true" />
+            <span>
+              <strong>Unverbindliche Einschätzung:</strong> Anforderungen, Möglichkeiten & Aufwand klären wir gemeinsam.
+            </span>
+          </li>
+          <li class="flex items-start gap-4">
+            <BadgeCheck class="text-highlight mt-1" size={28} aria-hidden="true" />
+            <span>
+              <strong>Erfahrung & Transparenz:</strong> Wir setzen auf nachhaltige Lösungen und offene Kommunikation.
+            </span>
+          </li>
+          <li class="flex items-start gap-4">
+            <Mail class="text-highlight mt-1" size={28} aria-hidden="true" />
+            <span>
+              <strong>Direkter Kontakt:</strong> Schreib uns einfach – wir freuen uns auf deine Nachricht.
+            </span>
+          </li>
+        </ul>
+      </div>
+      <Image
+          title="Wir freuen uns, von dir zu hören"
+          src={mainImage}
+          alt="Kontaktaufnahme Beratung Webdesign Projekt – Symbolbild"
+          width={400}
+          class="rounded-xl mx-auto"
+          loading="lazy"
+        />
+    </div>
+    <div class="flex items-center justify-center mt-24">
+      <a 
+        aria-label="E-Mail an uns senden"
+        href="mailto:matthias.hermsen@pm.me?subject=Unverbindliche%20Anfrage"
+        class="cursor-pointer no-underline bg-dark dark:bg-light text-light dark:text-dark hover:scale-[1.08] transition duration-300 ease-in-out flex items-center justify-center gap-4 rounded-xl px-12 py-8 w-fit"
+      >
+        <span class="font-semibold text-xl">Unverbindlich Kontakt aufnehmen</span>
+        <SendIcon size={32} aria-hidden="true" />
+      </a>
+    </div>
+    <div class="text-center mt-6 mb-16 text-black/50 dark:text-white/50">
+      Nimm bitte auch unsere
+      <a 
+        href="/privacy/" 
+        aria-label="Zur Datenschutzerklärung wechseln"
+        class="no-underline text-highlight transition duration-300 ease-in-out"
+      >
+        Datenschutzerklärung
+      </a>
+      zur Kenntnis.
+    </div>
+  </div>
 </BaseLayout>
