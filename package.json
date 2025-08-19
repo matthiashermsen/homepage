@@ -10,15 +10,15 @@
 	},
 	"dependencies": {
 		"@fontsource/inter": "5.2.6",
-		"@lucide/astro": "0.525.0",
-		"@tailwindcss/vite": "4.1.11",
-		"astro": "5.12.1",
-		"tailwindcss": "4.1.11"
+		"@lucide/astro": "0.540.0",
+		"@tailwindcss/vite": "4.1.12",
+		"astro": "5.13.2",
+		"tailwindcss": "4.1.12"
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.9.4",
-		"@biomejs/biome": "2.1.2",
-		"typescript": "5.8.3"
+		"@biomejs/biome": "2.2.0",
+		"typescript": "5.9.2"
 	},
 	"engines": {
 		"node": "24.4.1"
